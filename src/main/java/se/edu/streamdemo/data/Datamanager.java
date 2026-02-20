@@ -13,6 +13,9 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 
 public class Datamanager {
+    public static final String TODO = "T";
+    public static final String DEADLINE = "D";
+    public static final String EVENT = "E";
     private File dataFile;
 
     public File getDataFile() {
@@ -57,7 +60,8 @@ public class Datamanager {
             ArrayList<String> dataItems = readFile();
             taskList = parse(dataItems);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+            e.printStackTrace(); //this alone is a crime. you should at the very least do e.getMessage
         }
         return taskList;
     }
