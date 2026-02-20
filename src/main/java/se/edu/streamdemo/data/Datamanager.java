@@ -42,6 +42,8 @@ public class Datamanager {
     }
 
     private ArrayList readFile() throws IOException {
+
+        //these are guard clauses: if theres an exception, throw and get out
         if (!dataFile.exists()) {
             throw new FileNotFoundException();
         }
@@ -49,6 +51,10 @@ public class Datamanager {
             System.out.println("empty file");
             throw new IOException();
         }
+
+        // this is a happy path
+        // dont have to worry about resource management here:
+        // readAllLines() takes the data file, reads all lines, blah blah then closes the file
         ArrayList<String> dataItems = (ArrayList) Files.readAllLines(dataFile.toPath(), Charset.defaultCharset());
 
         return dataItems;
@@ -72,15 +78,15 @@ public class Datamanager {
             String taskDescription = getTaskDescription(line);
             String taskType = getTaskType(line);
             switch (taskType) {
-            case "T":
+            case TODO:
                 Todo todo = new Todo(taskDescription);
                 allTasks.add(todo);
                 break;
-            case "D":
+            case DEADLINE:
                 Deadline deadline = new Deadline(taskDescription);
                 allTasks.add(deadline);
                 break;
-            case "E":
+            case EVENT:
                 Event event = new Event(taskDescription);
                 allTasks.add(event);
                 break;
