@@ -13,6 +13,9 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 
 public class Datamanager {
+    public static final String TODO = "T";
+    public static final String DEADLINE = "D";
+    public static final String EVENT = "E";
     private File dataFile;
 
     public File getDataFile() {
